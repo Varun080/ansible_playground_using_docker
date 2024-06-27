@@ -1,5 +1,0 @@
-id,Name,IPaddress
-300c62a11857,ansible_webNode2,172.17.0.2
-907c8cd06d89,ansible_webNode1,172.17.0.3
-87c2143a2d3e,ansible_dbNode,172.17.0.4
-ae7d13be1380,ansible_controlNode2,172.17.0.5
