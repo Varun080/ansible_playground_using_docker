@@ -1,59 +1,20 @@
 # ansible_playground_using_docker
-This is a repo to create docker containers for learning ansible  
 
-## create a image for control node
+## Conent
 
-```
-docker build -t <ansible_control_node:1> ansible_control_node/
-```
+> Container_details.csv : this file have the data for Container_ID, Container_Name and Container_IP address of all the running container of your environment
 
-check image created
+> container_ipdetails.sh :  it is a shell script to get the data which is present in the file conteiner_details.csv
 
-```
-docker image list
-```
+> ansible_host_node : this direcotory containes the files which is used to create a image for host nodes. Host nodes are the nodes on which we will perform activity from the control node.
 
-image
+>> Dockerfile : it is the docker file to create the image for ansible host nodes.
+>> pass.sh : this shell script containes the password for the common user with in all the nodes which will be used to perform all the ansible tasks. it will update the password "root" for the user "ansuser".
 
-### create control node for ansible
+>ansible_control_node: this directory containes the files which will be used to create the image for ansible control node. This is the node in which ansible will be installed.
+>> Dockerfile : it is the docker file to create the image for ansible host nodes.
+>>host_ip_address.csv: this is an empty file with hedder "host_ip_address". this will be used to create ssh connection between control and all the host nodes.
+>>sshkey_push.py : this python script will be used enable ssh connection between control node and host nodes.
+>>pass.sh :this shell script containes the password for the common user with in all the nodes which will be used to perform all the ansible tasks. it will update the password "root" for the user "ansuser".
 
-```
-docker run -t -d -p 22 --name <name_of_the_container> <ansible_control_node:1>
-```
-
-created container
-
-```
-docker ps
-```
-
-image
-
-## create image for host node
-
-```
-docker build -t <ansible_host_node:1> ansible_host_node/
-```
-
-check image created
-
-```
-docker image list
-```
-
-image
-
-### create host node for ansible
-
-```
-docker run -t -d -p 22 --name <name_of_the_container> <ansible_host_node:1>
-```
-created container
-
-```
-docker ps
-```
-
-image
-
-
+Note: password and username must be same and available on both control and all the host nodes with elevated privilege. 
