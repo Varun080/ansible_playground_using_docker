@@ -28,3 +28,76 @@ This repo containes information and code to create docker continers and images w
 >>[pass.sh](./ansible_control_node/pass.sh) :this shell script containes the password for the common user with in all the nodes which will be used to perform all the ansible tasks. it will update the password "root" for the user "ansuser".
 
 #### ***Note: password and username must be same and available on both control and all the host nodes with elevated privilege.***
+
+## Create images for host and control nodes.
+
+### Create image for Host Nodes
+
+Start docker client with below command:
+
+```
+sudo systemctl start docker
+```
+
+Once the docker clinet started validate by running below command:
+
+```
+docker ps
+```
+
+Copy this repo in your local machine
+
+```
+git clone "https://github.com/Varun080/ansible_playground_using_docker.git"
+```
+
+Change directory to folder
+
+```
+cd ./ansible_playground_using_docker
+```
+
+Run below command to create host node image
+
+```
+docker build -t <name of the image : version> ansible_host_node/
+```
+
+### Create image for Control Node
+
+Make sure docker client is runnig and you are in folder `./ansible_playground_using_docker`.
+
+Run below command to create control node image
+
+```
+docker build -t <name of the image : version> ansible_control_node/
+```
+
+### Use of Container_details.csv and container_ipdetails.sh
+
+Once all the contianers are created we need to get the ip address of all the running container (assuming that all the containers which are running, are either control or host nodes for the sandbox). We will use this ip address to connect control node to host nodes using ssh on port 22 and update the host file at `/etc/ansible/host` for ansible to use and perform task.
+
+To get the IP details, run below command: (if you are using bash shell)
+
+ ```
+ sudo /bin/bash container_ipdetails.sh 
+ ```
+
+It will update the file [container_details.csv](container_details.csv) with id, name and IPAddress off the running containers.
+
+Then we can take the ip address from the file and update it into file [host_ip_address.csv](./ansible_control_node/host_ip_address.csv) and run below commands inside the control node to connect all the host nodes with control node with password less ssh key on the port 22.
+```
+# go to home directory for user 'ansuser' 
+cd /home/ansuser/
+```
+
+```
+python3 sshkey_push.py
+```
+
+you can validate it by running below conde.
+
+```
+ssh ansuser@<ipaddress of the host node>
+```
+It will provide the access over host node without any password requirement
