@@ -1,6 +1,6 @@
 # ansible_playground_using_docker
 
-This repo containes information and code to create docker continers and images which will help in creating an sandbox type environment for lern and practice ansible commands, configration and how the overall ansible environment workes.
+This repo containes information and code to create docker continers and images which will help in creating an sandbox type environment for learn and practice ansible commands, configration and how the overall ansible environment workes.
 
 ## Content
 
