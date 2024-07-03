@@ -1,6 +1,6 @@
 import csv
 import subprocess
-host_ip_addresses = "host_ip_address.csv"
+host_ip_addresses = "/home/ansuser/ssh_push/host_ip_address.csv"
 
 with open ( host_ip_addresses , mode ='r') as file:
     csv_reader = csv.DictReader(file)

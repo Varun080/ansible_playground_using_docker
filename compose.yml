@@ -1,0 +1,34 @@
+version: '3'
+# name: "ansible_playground"
+services: 
+    ansuble_control_node1:
+        image: "ansible_control_node:compose_0"
+        build: "./ansible_control_node"
+        container_name: "control_1"
+        tty: true
+        ports:
+          - "32788:22"
+        volumes:
+          - ./ansible_control_node:/home/ansuser/ssh_push/
+        networks:
+          bridge_playground:
+            ipv4_address: 10.5.0.5
+
+    ansuble_host_node:
+        image: "ansible_host_node:compose_0"
+        build: "./ansible_host_node"
+        tty: true
+        deploy:
+          replicas: 2
+        ports:
+          - "32789-32792:22"
+        networks:
+          bridge_playground:
+
+networks:
+    bridge_playground:
+        driver: bridge
+        ipam:
+          config:
+            - subnet: 10.5.0.0/16
+              gateway: 10.5.0.1
