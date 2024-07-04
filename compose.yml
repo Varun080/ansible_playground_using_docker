@@ -1,5 +1,4 @@
 version: '3'
-# name: "ansible_playground"
 services: 
     ansuble_control_node1:
         image: "ansible_control_node:compose_0"
@@ -19,6 +18,7 @@ services:
         build: "./ansible_host_node"
         tty: true
         deploy:
+        # increase replicas value to create requied number of host node
           replicas: 2
         ports:
           - "32789-32792:22"
