@@ -1,0 +1,11 @@
+- name: Install Meven
+  hosts: jk-host
+  become: true
+  tasks:
+    - name: install maven
+      apt:
+        name: "{{ package }}"
+        state: present
+      vars:
+        package:
+          - maven

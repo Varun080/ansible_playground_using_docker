@@ -1,0 +1,16 @@
+---
+- name: Install java
+  hosts: jk-host
+  become: true 
+  tasks:
+    - name: update apt repo cache
+      apt:
+        update_cache: yes
+    - name: install Java11
+      apt:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+          - openjdk-11-jdk
+...
