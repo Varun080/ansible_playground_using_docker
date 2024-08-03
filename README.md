@@ -100,6 +100,11 @@ docker-compose down
 ![delete container](./images/first.png)
 
 
+## Note
+
+New playbooks added on [./ansible_control_node/playbook](./ansible_control_node/playbook/)
+
+
 ## Important Data
 
 - Username : ansuser
